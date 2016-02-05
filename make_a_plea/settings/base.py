@@ -128,6 +128,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.cache.UpdateCacheMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.locale.LocaleMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -197,6 +198,7 @@ INSTALLED_APPS = [
     'apps.feedback',
     'apps.receipt',
     'django_premailer',
+    'corsheaders',
 ]
 
 # A sample logging configuration. The only tangible logging
