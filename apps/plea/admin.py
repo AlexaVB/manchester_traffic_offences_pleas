@@ -60,8 +60,10 @@ class MatchFilter(admin.SimpleListFilter):
 
 
 class UsageStatsAdmin(admin.ModelAdmin):
-    list_display = ('start_date', 'online_submissions', 'postal_requisitions', 'postal_responses')
-    list_editable = ('postal_requisitions', 'postal_responses')
+    list_display = ('start_date', 'postal_requisitions',
+                    'online_submissions', 'online_guilty_pleas', 'online_not_guilty_pleas',
+                    'postal_submissions', 'postal_guilty_pleas', 'postal_not_guilty_pleas')
+    list_editable = ('postal_requisitions', 'postal_submissions', 'postal_guilty_pleas', 'postal_not_guilty_pleas')
 
 
 class CourtAdmin(admin.ModelAdmin):

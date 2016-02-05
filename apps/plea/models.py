@@ -396,12 +396,15 @@ class UsageStats(models.Model):
     """
     start_date = models.DateField()
 
+    postal_requisitions = models.PositiveIntegerField(blank=True, null=True)
+
     online_submissions = models.PositiveIntegerField(default=0)
     online_guilty_pleas = models.PositiveIntegerField(default=0)
     online_not_guilty_pleas = models.PositiveIntegerField(default=0)
 
-    postal_requisitions = models.PositiveIntegerField(blank=True, null=True)
-    postal_responses = models.PositiveIntegerField(blank=True, null=True)
+    postal_submissions = models.PositiveIntegerField(blank=True, null=True)
+    postal_guilty_pleas = models.PositiveIntegerField(blank=True, null=True)
+    postal_not_guilty_pleas = models.PositiveIntegerField(blank=True, null=True)
 
     objects = UsageStatsManager()
 
