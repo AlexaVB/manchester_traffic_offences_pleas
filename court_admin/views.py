@@ -64,7 +64,7 @@ class DashboardView(TemplateView):
             "start_date__lte": dt.date(year, month, last_date)
         }
 
-    def _get_formset(self, court, date_filter=None, *args, **kwargs):
+    def _get_formset(self, court, data=None, date_filter=None, *args, **kwargs):
 
         if date_filter:
             stats = UsageStats.objects.filter(**date_filter)
@@ -82,8 +82,11 @@ class DashboardView(TemplateView):
         }
 
         form_kwargs.update(kwargs)
-
-        return usage_formset(*args, **form_kwargs)
+        #import pdb; pdb.set_trace()
+        if data:
+            return usage_formset(data, *args, **kwargs)
+        else:
+            return usage_formset(*args, **form_kwargs)
 
     def _get_month_list(self, court):
 
@@ -189,7 +192,7 @@ class DashboardView(TemplateView):
         court = self.get_selected_court(kwargs.get("court_id", None))
         kwargs["date_list"] = self._get_month_list(court)
 
-        formset = self._get_formset(court, request.POST)
+        formset = self._get_formset(court, data=request.POST)
 
         if formset.is_valid():
             formset.save()
