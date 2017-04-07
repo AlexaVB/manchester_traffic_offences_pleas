@@ -368,4 +368,11 @@ class ProcessResultsTestCase(TestCase):
         self.assertFalse(result.sent)
         self.assertFalse(result.processed)
 
+    def test_result_for_welsh_case_sent_in_welsh(self):
+        self.test_case1.language = "cy"
+        self.test_case1.save()
 
+        self.command.handle(**self.opts)
+
+        assert mail.outbox[0].subject == '[[Welsh translation needed]]'
+        assert 'Eich llys: Test Court' in mail.outbox[0].body
